@@ -10,14 +10,12 @@ import re
 
 def dataPreprocessing(df):
 
-    # mydf = df.loc[:, ['review_rating',
-    #                   'review_text', 'review_helpful_vote']]
     mydf = df
     # Contractions
     mydf['no_contract'] = mydf['review_text'].apply(
         lambda x: [contractions.fix(word) for word in x.split()])
     mydf['review'] = [' '.join(map(str, l)) for l in mydf['no_contract']]
-    mydf['review'] = [' '.join(map(str, l)) for l in mydf['no_contract']]
+
 
     # Stopwords Removal
     mydf['review'] = mydf['review'].apply(
